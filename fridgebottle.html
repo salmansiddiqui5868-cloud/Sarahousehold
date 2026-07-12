@@ -173,7 +173,7 @@ document.getElementById("plus").onclick = function () {
 };
 
 document.getElementById("minus").onclick = function () {
-    if (qty > 1) {
+    if (qty > 0) {
         qty--;
         update();
     }
@@ -200,7 +200,13 @@ https://salmansiddiqui5868-cloud.github.io/Sarahousehold/bottle.jpg
 https://salmansiddiqui5868-cloud.github.io/Sarahousehold/fridgebottle.html`
     );
 }
-
+if (qty == 0){
+document.getElementById("cartBtn").disabled = true;
+document.getElementById("orderBtn").style.display = "none";
+}else{
+document.getElementById("cartBtn").disabled = false;
+document.getElementById("orderBtn").style.display = "block";
+}
 update();
 
 </script>
