@@ -62,6 +62,51 @@ text-align:center;
 margin-top:20px;
 color:#888;
 }
+  .qty-box{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+margin:20px 0;
+}
+
+.qty-box button{
+width:45px;
+height:45px;
+border:none;
+border-radius:10px;
+background:#d4af37;
+color:#111;
+font-size:26px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.qty-box span{
+font-size:22px;
+font-weight:bold;
+color:#fff;
+min-width:30px;
+text-align:center;
+}
+
+#productImage{
+width:200px;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+}
+
+#productImage:hover{
+transform:scale(1.05);
+}
+
+#total{
+font-size:20px;
+font-weight:bold;
+color:#d4af37;
+margin:15px 0;
+}
 </style>
 </head>
 
@@ -73,13 +118,33 @@ color:#888;
 
 <div class="card">
 
-<img src="bottle.jpg" alt="fridge bottle">
+<img id="productImage"
+src="bottle.jpg"
+alt="Fridge Bottle">
 
 <h2>Fridge Bottle</h2>
 
-<p>Price: ₹99</p>
+<p id="price">₹99</p>
 
-<a class="btn" href="https://wa.me/918446429045?text=I want to order fridge bottle">
+<div class="qty-box">
+
+<button id="minus">−</button>
+
+<span id="qty">1</span>
+
+<button id="plus">+</button>
+
+</div>
+
+<p id="total">
+Total : ₹99
+</p>
+
+<button id="cartBtn" class="btn">
+🛒 Add To Cart
+</button>
+
+<a id="orderBtn" class="btn" href="#">
 💬 Order on WhatsApp
 </a>
 
@@ -94,6 +159,50 @@ Sarahousehold
 </div>
 
 </div>
+<script>
 
+let qty = 1;
+const price = 99;
+
+const qtyText = document.getElementById("qty");
+const totalText = document.getElementById("total");
+
+document.getElementById("plus").onclick = function () {
+    qty++;
+    update();
+};
+
+document.getElementById("minus").onclick = function () {
+    if (qty > 1) {
+        qty--;
+        update();
+    }
+};
+
+function update() {
+    qtyText.innerHTML = qty;
+    totalText.innerHTML = "Total : ₹" + (qty * price);
+
+    document.getElementById("orderBtn").href =
+    "https://wa.me/918446429045?text=" +
+    encodeURIComponent(
+`🛍️ Sarahousehold Order
+
+📦 Product : Fridge Bottle
+🔢 Quantity : ${qty}
+💰 Price : ₹${price}
+💵 Total : ₹${qty * price}
+
+🖼️ Image :
+https://salmansiddiqui5868-cloud.github.io/Sarahousehold/bottle.jpg
+
+📄 Product Page :
+https://salmansiddiqui5868-cloud.github.io/Sarahousehold/fridgebottle.html`
+    );
+}
+
+update();
+
+</script>
 </body>
 </html>
