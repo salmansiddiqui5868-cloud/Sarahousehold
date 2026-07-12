@@ -56,56 +56,6 @@ Sarahousehold
 
 </div>
   <script src="script.js"></script>
-<script>
 
-let qty = 1;
-const price = 99;
-
-const qtyText = document.getElementById("qty");
-const totalText = document.getElementById("total");
-
-document.getElementById("plus").onclick = function () {
-    qty++;
-    update();
-};
-
-document.getElementById("minus").onclick = function () {
-    if (qty > 0) {
-        qty--;
-        update();
-    }
-};
-
-function update() {
-    qtyText.innerHTML = qty;
-    totalText.innerHTML = "Total : ₹" + (qty * price);
-
-    document.getElementById("orderBtn").href =
-    "https://wa.me/918446429045?text=" +
-    encodeURIComponent(
-`🛍️ Sarahousehold Order
-
-📦 Product : Fridge Bottle
-🔢 Quantity : ${qty}
-💰 Price : ₹${price}
-💵 Total : ₹${qty * price}
-
-🖼️ Image :
-https://salmansiddiqui5868-cloud.github.io/Sarahousehold/bottle.jpg
-
-📄 Product Page :
-https://salmansiddiqui5868-cloud.github.io/Sarahousehold/fridgebottle.html`
-    );
-}
-if (qty == 0){
-document.getElementById("cartBtn").disabled = true;
-document.getElementById("orderBtn").style.display = "none";
-}else{
-document.getElementById("cartBtn").disabled = false;
-document.getElementById("orderBtn").style.display = "block";
-}
-update();
-
-</script>
 </body>
 </html>
