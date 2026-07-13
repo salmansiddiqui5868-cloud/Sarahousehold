@@ -1,62 +1,98 @@
-
 let qty = 1;
-const price = 99;
 
 const qtyText = document.getElementById("qty");
 const totalText = document.getElementById("total");
+const orderBtn = document.getElementById("orderBtn");
 
-function update() {
-  qtyText.textContent = qty;
-  totalText.textContent = "Total : ₹" + (qty * price);
+const productName = document.getElementById("productName").innerText;
 
-  const orderBtn = document.getElementById("orderBtn");
+const productPrice = parseInt(
+document.getElementById("price").dataset.price
+);
 
-  orderBtn.href =
-    "https://wa.me/918446429045?text=" +
-    encodeURIComponent(
+const productImage =
+document.getElementById("productImage").src;
+
+function update(){
+
+qtyText.innerHTML = qty;
+
+totalText.innerHTML =
+"Total : ₹" + (qty * productPrice);
+
+orderBtn.href =
+"https://wa.me/918446429045?text=" +
+encodeURIComponent(
+
 `🛍️ Sarahousehold Order
 
-📦 Product: Fridge Bottle
-🔢 Quantity: ${qty}
-💰 Price: ₹${price}
-💵 Total: ₹${qty * price}
+📦 Product : ${productName}
 
-🖼️ Image:
-https://salmansiddiqui5868-cloud.github.io/Sarahousehold/bottle.jpg`
-    );
+🔢 Quantity : ${qty}
+
+💰 Price : ₹${productPrice}
+
+💵 Total : ₹${qty * productPrice}
+
+🖼️ Image :
+${productImage}`
+
+);
+
 }
 
-document.getElementById("plus").onclick = function () {
-  qty++;
-  update();
+document.getElementById("plus").onclick=function(){
+
+qty++;
+
+update();
+
 };
 
-document.getElementById("minus").onclick = function () {
-  if (qty > 1) {
-    qty--;
-    update();
-  }
+document.getElementById("minus").onclick=function(){
+
+if(qty>1){
+
+qty--;
+
+update();
+
+}
+
 };
 
-// Image Popup
-const popup = document.getElementById("popup");
-const popupImg = document.getElementById("popupImg");
-const productImage = document.getElementById("productImage");
-const closeBtn = document.getElementById("close");
+// Popup
 
-productImage.onclick = function () {
-  popup.style.display = "flex";
-  popupImg.src = productImage.src;
+const popup=document.getElementById("popup");
+
+const popupImg=document.getElementById("popupImg");
+
+const img=document.getElementById("productImage");
+
+const close=document.getElementById("close");
+
+img.onclick=function(){
+
+popup.style.display="flex";
+
+popupImg.src=img.src;
+
 };
 
-closeBtn.onclick = function () {
-  popup.style.display = "none";
+close.onclick=function(){
+
+popup.style.display="none";
+
 };
 
-popup.onclick = function (e) {
-  if (e.target === popup) {
-    popup.style.display = "none";
-  }
+popup.onclick=function(e){
+
+if(e.target==popup){
+
+popup.style.display="none";
+
+}
+
 };
 
 update();
